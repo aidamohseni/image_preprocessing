@@ -1,0 +1,21 @@
+#created by aida.science
+import cv2
+import os
+dimensions = (256, 256)
+
+folder = "D:/data2"
+for directory in os.listdir(folder):
+    # print(directory)
+    for file_name in os.listdir(folder + '/' + directory):
+        full_path = os.path.join(folder + '/' + directory + '/' + file_name)
+        image = cv2.imread(full_path)
+        print(full_path)
+        # ratio resize image on the base of original size
+        """ratio = 25  # ratio rather than original size
+        width = int(image.shape[1] * ratio / 100)
+        height = int(image.shape[0] * ratio / 100)
+        dimensions = (width, height)"""
+        # resize image
+        resized = cv2.resize(image, dimensions, interpolation=cv2.INTER_AREA)
+        cv2.imwrite(full_path, resized)
+
